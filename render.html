@@ -1,0 +1,32 @@
+<html>
+  <title>Cities Around the World</title>
+  <body>
+    <div id="mapdiv"></div>
+    <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+    <script src="data.js"></script>
+    <script>
+      map = new OpenLayers.Map("mapdiv");
+      map.addLayer(new OpenLayers.Layer.OSM());
+
+      const center = new OpenLayers.LonLat(-0.1279688, 51.5077286).transform(
+        new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+        map.getProjectionObject() // to Spherical Mercator Projection
+      );
+
+      var zoom = 3;
+
+      var markers = new OpenLayers.Layer.Markers("Markers");
+      map.addLayer(markers);
+
+      citiesData.forEach((city) => {
+        const lonLat = new OpenLayers.LonLat(city[2], city[1]).transform(
+          new OpenLayers.Projection("EPSG:4326"),
+          map.getProjectionObject()
+        );
+        markers.addMarker(new OpenLayers.Marker(lonLat));
+      });
+
+      map.setCenter(center, zoom);
+    </script>
+  </body>
+</html>

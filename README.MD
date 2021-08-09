@@ -1,5 +1,3 @@
 # Geocoding
 
-Used the OpenStreetMap API to store geolocation data of the places re-
-trieved from a text file in a SQLite database. The places are then marked down on a map and
-rendered on a web page.
+Used the OpenStreetMap API to extract geolocation data of the places parsed from a file and stored it in a SQLite database. The places are then marked down on a map and rendered on a web page.
